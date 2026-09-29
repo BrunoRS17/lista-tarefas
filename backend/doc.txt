@@ -1,0 +1,4 @@
+Tarefa tem:
+- Tarefa
+- data de expiração
+- concluída
