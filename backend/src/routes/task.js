@@ -1,10 +1,14 @@
 const express = require("express")
 const prisma = require("../lib/prisma")
 
+const validate = require("../middleware/validate.middleware")
+
+const { createTaskSchema } = require("../schemas/task")
+
 const router = express.Router();
 
 
-router.post("/tasks", async (req, res) => {
+router.post("/tasks", validate(createTaskSchema), async (req, res) => {
     const {task, due_date} = req.body;
 
     const tasks = await prisma.task.create({
