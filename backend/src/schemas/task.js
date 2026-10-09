@@ -10,6 +10,11 @@ const createTaskSchema = z.object({
     due_date: z.iso.datetime({error: "Formato de data e hora inválido. Utilize o padrão ISO 8601"})
 });
 
+const getTaskById = z.object({
+    id: z.coerce.number().int().positive()
+})
+
 module.exports = {
-    createTaskSchema
+    createTaskSchema,
+    getTaskById
 }
