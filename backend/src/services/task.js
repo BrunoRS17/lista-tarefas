@@ -13,6 +13,16 @@ class TaskService {
         return await taskRepository.findAll()
     }
 
+    //busca única por id
+    async getTaskById(id){
+        const task = await taskRepository.findUnique(id)
+        if (!task){
+            throw new Error('Tarefa não encontrada')
+        }
+        return task
+
+    }
+
     //Deleta uma tarefa
     async deleteTask(id){
         const task = await taskRepository.findUnique(id)

@@ -16,6 +16,9 @@ router.post('/tasks', validate(createTaskSchema), (req, res) => TaskController.c
 //Leitura das tasks
 router.get('/tasks', (req, res) => TaskController.index(req, res));
 
+//Leitura de uma tarefa filtrada pelo id
+router.get('/tasks/:id', validate(getTaskById, 'params'), (req, res) => TaskController.show(req,res));
+
 //Deletar uma tarefa
 router.delete("/tasks/:id", validate(getTaskById, 'params'), (req, res) => TaskController.destroy(req, res));
 
