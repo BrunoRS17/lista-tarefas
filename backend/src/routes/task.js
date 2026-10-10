@@ -24,5 +24,4 @@ router.patch('/tasks/:id', validate(getTaskById, 'params'), validate(updateTasks
 router.delete("/tasks/:id", validate(getTaskById, 'params'), (req, res) => TaskController.destroy(req, res));
 
 
-
 module.exports = router
