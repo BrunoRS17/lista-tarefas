@@ -2,6 +2,7 @@ const taskService = require("../services/task")
 
 class TaskController {
     
+
     //Criar uma task
     async create(req, res) {
         try {
@@ -44,6 +45,23 @@ class TaskController {
         }
     }
 
+    //Atualiza a task
+    async update(req, res){
+        try{
+            const task = await taskService.updateTask(req.params.id, req.body);
+            return res.status(200).json(task)
+        } catch (error){
+            
+            if(error.message === 'Tarefa não encontrada'){
+                return res.status(404).json({message: error.message})
+            }
+
+            return res.status(500).json({
+                message: 'Erro ao consultar tarefa',
+                error: error.message
+            })
+        }
+    }
 
     //Deleta uma task
     async destroy(req,res){

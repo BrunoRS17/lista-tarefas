@@ -9,7 +9,6 @@ class TaskRepository {
         })
     }
 
-
     //Retorna todos os registros 
     async findAll(){
      return await prisma.task.findMany()   
@@ -27,6 +26,14 @@ class TaskRepository {
         return await prisma.task.delete({
             where: { id }
         });
+    }
+
+    //Atualizar uma tarefa
+    async update(id, data){
+        return await prisma.task.update({
+            where: { id: id },
+            data
+        })
     }
 }
 
