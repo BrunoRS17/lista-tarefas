@@ -14,10 +14,19 @@ datasource db {
 }
 
 
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
 model Task {
   id Int @id @default(autoincrement())
   task String
   due_date DateTime
   completed Boolean @default(false)
+  priority Priority?
+  estimated_duration_minutes Int?
   createdAt DateTime @default(now())
 }
