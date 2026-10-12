@@ -6,8 +6,8 @@ class TaskController {
     //Criar uma task
     async create(req, res) {
         try {
-            const {task, due_date} = req.body
-            const new_task = await taskService.createTask({task, due_date})
+            const data = req.body
+            const new_task = await taskService.createTask(data)
             return res.status(201).json(new_task)
 
         } catch (error){

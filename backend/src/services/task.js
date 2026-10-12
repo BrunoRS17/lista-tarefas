@@ -17,8 +17,8 @@ class TaskService {
 
 
     //Cria uma tarefa
-    async createTask({task, due_date}){
-        return await taskRepository.create({task, due_date})
+    async createTask(data){
+        return await taskRepository.create(data)
     }
 
     //Busca todas as tarefas
