@@ -24,8 +24,11 @@ export default function TaskItem({task}: TaskItemProps) {
 
             <div className="flex gap-2 sm:shrink-0">
             <button type="button" disabled className="rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-600 disabled:cursor-not-allowed disabled:opacity-50">Editar</button>
+
             <button type="button" disabled className="rounded-md border border-red-200 px-3 py-1.5 text-sm text-red-600 disabled:cursor-not-allowed disabled:opacity-50">Excluir</button>
             </div>
+
+        
         </li>
     );
 }

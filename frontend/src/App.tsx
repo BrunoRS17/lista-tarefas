@@ -1,5 +1,8 @@
 import type { Task } from "./types/task";
 import  TaskItem  from "./components/TaskItem";
+import { useState } from "react";
+
+
 
 
 const initialTasks: Task[] = [
@@ -10,6 +13,32 @@ const initialTasks: Task[] = [
 
 
 function App(){
+
+  const [tasks, setTasks] = useState<Task[]>(initialTasks);
+  const [newTaskTitle, setNewTaskTitle] = useState<string>("")
+
+
+  //Salvar uma tarefa
+  function handleAddTask(){
+    const title = newTaskTitle.trim()
+
+    if (!title) {
+      return;
+    }
+
+    const newTask: Task = {
+      id: Date.now(),
+      title: title,
+      completed: false
+    }
+
+    //Adiciona de fato a tarefa
+    setTasks((previousTasks) => [...previousTasks, newTask]);
+    setNewTaskTitle("")//Limpa o campo de nova tarefa
+  }
+
+
+
   return (
     <main className="min-h-screen bg-slate-200 px-4 py-10">
 
@@ -29,11 +58,14 @@ function App(){
             <input 
             type="text" aria-label="Titulo da nova tarefa" 
             placeholder="Digite uma tarefa"
+            value={newTaskTitle}
+            onChange={(event) => setNewTaskTitle(event.target.value)}
             className="w-full flex-1 rounded-lg border border-slate-300 px-4 py-2 outline-none focus:border-blue-500"
             />
             
             <button type="button"
-             disabled 
+             onClick={handleAddTask}
+             disabled={!newTaskTitle.trim()}
              className="rounded-lg bg-green-600 px-5 py-2 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
              >
               Adicionar
@@ -48,7 +80,7 @@ function App(){
           <h2 className="mb-4 text-xl font-semibold text-slate-500">Minhas Tarefas</h2>
 
           <ul className="space-y-3">
-            {initialTasks.map((task) => (
+            {tasks.map((task) => (
               <TaskItem key={task.id} task={task}/>
             ))}
           </ul>
