@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { margin: 0; min-width: 320px; }
+  button:not(:disabled) { cursor: pointer; }
+  ::selection { background: #e0e7ff; color: #312e81; }
+}
